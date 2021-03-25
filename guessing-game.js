@@ -4,7 +4,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-let secretNumber = 1;
+let secretNumber = 6;
 
 let checkGuess = function(num) {
     if (num > secretNumber) {
@@ -18,3 +18,16 @@ let checkGuess = function(num) {
         return true;
     }
 }
+
+let askGuess = function() {
+    rl.question("Enter a guess: ", answer => {
+        answer = Number(answer);
+        if (checkGuess(answer)) {
+            rl.close();
+        } else {
+            askGuess();
+        }
+    });
+}
+
+askGuess();
